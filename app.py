@@ -6,3 +6,9 @@ from sklearn.tree import DecisionTreeClassifier
 from sklearn import metrics
 from sklearn.tree import plot_tree
 import matplotlib.pyplot as plt
+
+# Load the Iris dataset
+iris = load_iris()
+
+# Create a DataFrame from the Iris Dataset.
+df = pd.DataFrame(data=iris.data, columns=iris.feature_names)
