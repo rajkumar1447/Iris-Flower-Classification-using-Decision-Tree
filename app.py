@@ -1,14 +1,18 @@
-# Install Required and necessary packages.
-import pandas as pd
-from sklearn.datasets import load_iris
-from sklearn.model_selection import train_test_split
-from sklearn.tree import DecisionTreeClassifier
-from sklearn import metrics
-from sklearn.tree import plot_tree
-import matplotlib.pyplot as plt
+from data_loader import load_data
+from model import train_and_evaluate
+from visualize import visualize_tree
 
-# Load the Iris dataset
-iris = load_iris()
+def main():
+    df, data = load_data()
+    classifier, accuracy, conf_matrix, class_report = train_and_evaluate(df)
 
-# Create a DataFrame from the Iris Dataset.
-df = pd.DataFrame(data=iris.data, columns=iris.feature_names)
+    print(f"\nAccuracy: {accuracy * 100:.2f}%")
+    print("\nConfusion Matrix:")
+    print(conf_matrix)
+    print("\nClassification Report:")
+    print(class_report)
+
+    visualize_tree(classifier, data)
+
+if __name__ == "__main__":
+    main()
